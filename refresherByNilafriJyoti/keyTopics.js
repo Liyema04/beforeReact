@@ -159,3 +159,27 @@ kuNjani('Prince')
 */
 
 // 4. Destructuring Objects and Arrays
+
+/*
+    Destructuring allows you to extract values from arrays and properties from objects into variables. T
+    his concise syntax makes your code cleaner and more readable. 
+*/
+
+// Example of Array Destructuring:
+const [first, second] = [10, 20];
+console.log(first) // output -> 10
+
+/*
+
+    To extract specific values from an array or object, 
+    use destructuring by enclosing the desired variables within curly braces 
+    for objects or square brackets for arrays.
+
+*/
+
+// Example of Object Destructuring
+const user = { name: 'Alice', age: 25 };
+const { name, age } = user;
+console.log(name); // Alice
+
+// Destructuring is commonly used in React for handling props and state
