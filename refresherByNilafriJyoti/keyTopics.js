@@ -182,4 +182,22 @@ const user = { name: 'Alice', age: 25 };
 const { name, age } = user;
 console.log(name); // Alice
 
-// Destructuring is commonly used in React for handling props and state
+    // Destructuring is commonly used in React for handling props and state
+
+// 5. Rest and Spread Operators
+
+/*
+
+    The rest and spread operators are incredibly versatile and widely used in JavaScript. 
+    Both are represented by three dots (...), but their meanings differ depending on the context in which they are used.
+
+*/
+
+
+    // Spread Operator: Expands elements of an array or object.
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5];
+console.log(arr2); // [1, 2, 3, 4, 5]
+
+/* arr2 is created by spreading the elements of arr1 
+ and then adding additional values */
