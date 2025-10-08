@@ -186,18 +186,76 @@ console.log(name); // Alice
 
 // 5. Rest and Spread Operators
 
-/*
+    /*
 
-    The rest and spread operators are incredibly versatile and widely used in JavaScript. 
-    Both are represented by three dots (...), but their meanings differ depending on the context in which they are used.
+        The rest and spread operators are incredibly versatile and widely used in JavaScript. 
+        Both are represented by three dots (...), but their meanings differ depending on the context in which they are used.
+
+    */
+
+
+/* 
+
+Spread Operator: Expands elements of an array or object.
+    - Primarily used to unpack arrays or objects into individual elements.
+    - Useful for creating shallow copies or merging arrays (and objects) without mutating the original
 
 */
-
-
-    // Spread Operator: Expands elements of an array or object.
 const arr1 = [1, 2, 3];
 const arr2 = [...arr1, 4, 5];
 console.log(arr2); // [1, 2, 3, 4, 5]
 
-/* arr2 is created by spreading the elements of arr1 
- and then adding additional values */
+    /* 
+
+        arr2 is created by spreading the elements of arr1 and then adding additional values 
+    
+    */
+
+    // Spread operator can also be used to copy objects or combine objects
+const obj1 = {igama:'Liyema', iminyaka: 21};
+const obj2 = {...obj1, impangelo: 'Software Engineer'};
+
+console.log(obj2) // { igama: 'Liyema', iminyaka: 21, impangelo: 'Software Engineer' }
+
+    // This is a common pattern/practice when updating state in React Applications
+
+/*
+
+Rest Operator: Collects multiple elements into an array.
+    - The rest operator does the reverse: 
+        ~> It collects multiple arguments or elements into a single array.
+        ~> Useful when working with vardic functions(functions that accept a variable number of arguments)    
+
+*/
+
+    /*
+
+        Here '...ags' gathers all the arguments passed to the function into an array. 
+        This allows the 'reduce()' function to handela any number of arguments dynamically 
+        e.g.
+        | Step | total | num | total + num |
+        | ---- | ----- | --- | ----------- |
+        | 1️⃣  | 0     | 1   | 1           |
+        | 2️⃣  | 1     | 2   | 3           |
+        | 3️⃣  | 3     | 3   | 6           |
+
+
+
+    */
+
+function sum(...args) {
+    return args.reduce((total, num) => total + num, 0); // reduce() - loops through each element in the array and combines them into a single result 
+}
+
+console.log(sum(1, 2, 3)); // 6
+
+    // You can also use the rest operator to collect remaining properties of an object or elements of an array:
+
+const [n1, ...rest] = [10, 20, 30, 40];
+console.log(n1); // 10
+console.log(rest) // [ 20, 30, 40 ]
+
+    /* 
+        This technique is particularly useful in React when working with props, where you might want to 
+        extract specific properties and pass the rest down to child components. 
+    */
