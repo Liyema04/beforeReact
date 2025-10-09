@@ -259,3 +259,83 @@ console.log(rest) // [ 20, 30, 40 ]
         This technique is particularly useful in React when working with props, where you might want to 
         extract specific properties and pass the rest down to child components. 
     */
+
+// 6. Map, Filter & Reduce Methods: 
+
+
+/*
+
+The map(), filter(), and reduce() methods are incredibly powerful for array manipulation in JavaScript, 
+and they play a crucial role in React for tasks like rendering lists, filtering data, and summarizing information.
+
+    -> Map: Transforms elements of an array according to the function provided. Essential in React for dynamically rendering lists of 
+                components from arrays of data...
+
+    -> Filter: Creates a new array with elements that pass the condition specified  in the callback function. Frequently used 
+                in React when you want to display only certain items based on user input or a specific condition.
+
+    -> Reduce: Accumulates values into a single result     
+
+*/
+
+
+// 1. Map method
+    // Example (basic usage):
+    const nums= [1, 2, 3, 4];
+    const doubled = nums.map(num => num * 2);
+    console.log(doubled); // [ 2, 4, 6, 8 ]
+
+    /* In React, map() is commonly used to render lists of components:
+    const users = [
+        { id: 1, name: 'Alice'},
+        { id: 2, name: 'Bob'},
+        { id: 3, name: 'Charlie'}
+    ];
+
+    function UserList() {
+        return (
+            <ul>
+                {users.map(user => (
+                    <li key={user.id}>{user.name}</li>
+                ))}
+            </ul>
+        );
+    } 
+    */
+
+    /* 
+        Note that each <li> element in the list has a unique 'key' prop.
+        It is required by React when rendering lists like this. 
+    */
+    
+
+// 2. Filter method
+    //Example (basic usage):
+    const nums2 = [1, 2, 3, 4, 5, 6];
+    const evenNummbers = nums2.filter(num => num % 2 === 0);
+    console.log(evenNummbers);
+    
+    /* Scenario: 
+        Imagine you have a list where some tasks are completed while some are not. 
+        You can use the filter() method to display (render) only the tasks that are not yet completed  
+    */
+
+    // Example (Filtering Data in React):
+    const todos = [
+        { id: 1, task: 'Learn JavaScript', completed: true},
+        { id: 2, task: 'Learn React', completed: false },
+        { id: 3, task: 'Build a project', completed: false }
+    ];
+    
+    function TodoList() {
+        const incompleteTodos = todos.filter(todo => !todo.completed);
+        return (
+            <ul>
+                {incompleteTodos.map(todo => (
+                    <li key={todo.id} >{todo.task}</li>
+                ))}
+            </ul>
+        ); 
+    } 
+
+// 3. Reduce method  
