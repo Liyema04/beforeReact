@@ -274,68 +274,121 @@ and they play a crucial role in React for tasks like rendering lists, filtering 
     -> Filter: Creates a new array with elements that pass the condition specified  in the callback function. Frequently used 
                 in React when you want to display only certain items based on user input or a specific condition.
 
-    -> Reduce: Accumulates values into a single result     
+    -> Reduce: Accumulates values into a single result. Executes a reducer function on each element of the array, 
+                resulting in a single output value. It's used when you need to accumulate data, 
+                such as summing values or combining objects.       
 
 */
 
 
 // 1. Map method
-    // Example (basic usage):
-    const nums= [1, 2, 3, 4];
-    const doubled = nums.map(num => num * 2);
-    console.log(doubled); // [ 2, 4, 6, 8 ]
+// Example (basic usage):
+const nums= [1, 2, 3, 4];
+const doubled = nums.map(num => num * 2);
+console.log(doubled); // [ 2, 4, 6, 8 ]
 
-    /* In React, map() is commonly used to render lists of components:
-    const users = [
-        { id: 1, name: 'Alice'},
-        { id: 2, name: 'Bob'},
-        { id: 3, name: 'Charlie'}
-    ];
+/* In React, map() is commonly used to render lists of components:
+const users = [
+    { id: 1, name: 'Alice'},
+    { id: 2, name: 'Bob'},
+    { id: 3, name: 'Charlie'}
+];
 
-    function UserList() {
-        return (
-            <ul>
-                {users.map(user => (
-                    <li key={user.id}>{user.name}</li>
-                ))}
-            </ul>
-        );
-    } 
-    */
+function UserList() {
+    return (
+        <ul>
+            {users.map(user => (
+                <li key={user.id}>{user.name}</li>
+            ))}
+        </ul>
+    );
+} 
+*/
 
-    /* 
-        Note that each <li> element in the list has a unique 'key' prop.
-        It is required by React when rendering lists like this. 
-    */
-    
+/* 
+    Note that each <li> element in the list has a unique 'key' prop.
+    It is required by React when rendering lists like this. 
+*/
+
 
 // 2. Filter method
-    //Example (basic usage):
-    const nums2 = [1, 2, 3, 4, 5, 6];
-    const evenNummbers = nums2.filter(num => num % 2 === 0);
-    console.log(evenNummbers);
-    
-    /* Scenario: 
-        Imagine you have a list where some tasks are completed while some are not. 
-        You can use the filter() method to display (render) only the tasks that are not yet completed  
-    */
+//Example (basic usage):
+const nums2 = [1, 2, 3, 4, 5, 6];
+const evenNummbers = nums2.filter(num => num % 2 === 0);
+console.log(evenNummbers);
 
-    // Example (Filtering Data in React):
-    const todos = [
-        { id: 1, task: 'Learn JavaScript', completed: true},
-        { id: 2, task: 'Learn React', completed: false },
-        { id: 3, task: 'Build a project', completed: false }
-    ];
-    
-    function TodoList() {
-        const incompleteTodos = todos.filter(todo => !todo.completed);
-        return (
-            <ul>
-                {incompleteTodos.map(todo => (
-                    <li key={todo.id} >{todo.task}</li>
-                ))}
-            </ul>
-        ); 
-    } 
+/* Scenario: 
+    Imagine you have a list where some tasks are completed while some are not. 
+    You can use the filter() method to display (render) only the tasks that are not yet completed  
+*/
 
-// 3. Reduce method  
+// Example (Filtering Data in React):
+const todos = [
+    { id: 1, task: 'Learn JavaScript', completed: true},
+    { id: 2, task: 'Learn React', completed: false },
+    { id: 3, task: 'Build a project', completed: false }
+];
+
+/*function TodoList() {
+    const incompleteTodos = todos.filter(todo => !todo.completed);
+    return (
+        <ul>
+            {incompleteTodos.map(todo => (
+                <li key={todo.id} >{todo.task}</li>
+            ))}
+        </ul>
+    ); 
+} */ 
+
+// 3. Reduce method
+//Example(basic usage):
+const nums3 = [1, 2, 3, 4];
+const sum1 = nums3.reduce((total, num) => total + num, 0);
+console.log(sum1); // 10 
+
+/*
+
+    You might use reduce() in React to calculate a summary of some data, 
+    like the total price of items in a shopping cart — considering the items’ individual price and quantities:
+
+*/
+
+// Example (Using reduce() in React):
+const cart = [
+    { id: 1, name: 'Apple', price: 1.5, quantity: 3 },
+    { id: 2, name: 'Banana', price: 1, quantity: 2 },
+    { id: 3, name: 'Orange', price: 2, quantity: 1 },
+];
+
+/*function CartSummary() {
+    const total=cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    return (
+    <div>
+        <h3>Total: ${total}</h3>
+    </div>  
+    );
+} */
+
+/*
+
+    These array methods are invaluable in React for manipulating and displaying data dynamically. 
+    They allow for clean, readable, and declarative logic within your components.
+
+    You can also combine these methods to create powerful data transformations. 
+    For example, you can filter an array and then map the results: filter() is used to extract only the adult users, 
+    and map() is then used to create a list of their names.
+
+*/
+
+
+// Example: combined use of filter and map methods
+const users = [
+    { id: 1, name: 'Alice', age: 25 },
+    { id: 2, name: 'Bob', age: 17 },
+    { id: 3, name: 'Charlie', age: 30 }
+];
+
+const adultNames = users
+    .filter(user => user.age >= 18)
+    .map(user => user.name);
+console.log(adultNames); // ['Alice', 'Charlie']
