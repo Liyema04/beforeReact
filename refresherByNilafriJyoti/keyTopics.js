@@ -392,3 +392,71 @@ const adultNames = users
     .filter(user => user.age >= 18)
     .map(user => user.name);
 console.log(adultNames); // ['Alice', 'Charlie']
+
+    /*
+    
+    -> Note:
+    - map() & filter() methods are easier to grasp, they follow a simple 'one to one'/'one to zero or none' relationship  
+    - map() transforms each element into a new one, while filter() includes or excludes elements based on a condition, returning
+         a similarly structured array.
+    - reduce() is more complex, as it accumulates values into a single result rather than maintaining a 'one-to-one relationship. '
+         It requires managing both the current value and an accumulator, making it conceptually different and harder to interpret than map() or filter(). 
+    */
+   
+// 7. Mutability Issues with Methods like Array.sort()
+
+/*
+
+    The Array.sort() method sorts elements of an array in place, meaning it mutates the original arrray. eg. 
+
+*/
+
+const amanani = [4, 3, 2, 1];
+
+amanani.sort();
+console.log(amanani);
+
+/*
+
+    This works in plain JS but is problematic ib React, where immutability is crucial for correctly managing state.
+    React detects state changes by comparing previous and new states and triggers re-renders based on those changes. 
+    But when an array is mutated in place (like with sort()), React may fail to recognize the change, 
+        leading to stale UI updates or unpredictable behavior. 
+
+   To avoid this, it’s best to create a copy using the spread operator (...) or slice() before sorting, 
+        ensuring that the original state remains unchanged: 
+
+*/ 
+
+const sortedAmanani = [...amanani].sort();
+console.log(sortedAmanani) // [ 1, 2, 3, 4 ]
+
+/*
+
+    Methods like map(), filter(), reduce(), or copying arrays/objects before modifying them is/are essential for 
+        preserving immutability and ensuring reliable state management in React.
+
+*/
+
+
+// 8. Ternary Operator
+
+/*
+
+    The ternary operator is a shorthand for conditional statements. Syntax is quite simple: 
+        condition ? expressionIfTrue : expressionIfFalse. If the condition evaluates to true, it executes the expressionIfTrue. 
+        If it’s false, it executes the expressionIfFalse. e.g.
+
+*/
+
+let isUserRegistered = true;
+let message = isUserRegistered ? 'Please Login' : 'Please Sign-up';
+
+console.log(message); // Output: Please login
+
+/*
+
+    In React, it is an efficient replacement for if-else statements  in certain scenarios -- like conditional rendering, 
+        which delivers elements and components based on certain conditions or values of state or props data.
+
+*/
