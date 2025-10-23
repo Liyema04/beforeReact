@@ -447,16 +447,21 @@ console.log(sortedAmanani) // [ 1, 2, 3, 4 ]
         condition ? expressionIfTrue : expressionIfFalse. If the condition evaluates to true, it executes the expressionIfTrue. 
         If it’s false, it executes the expressionIfFalse. e.g.
 
+    Short hand notations for doing  'if''/ else' statements.     
 */
 
 let isUserRegistered = true;
-let message = isUserRegistered ? 'Please Login' : 'Please Sign-up';
+let message = isUserRegistered ? 'Please Login' : 'Please Sign-up'; 
 
 console.log(message); // Output: Please login
 
 /*
 
     In React, it is an efficient replacement for if-else statements  in certain scenarios -- like conditional rendering, 
-        which delivers elements and components based on certain conditions or values of state or props data.
+        which delivers elements and components based on certain conditions or values of state or props data
+        
+    **Useful in React !    
 
 */
+
+// 9. Short-Circuiting and Logical Operators
