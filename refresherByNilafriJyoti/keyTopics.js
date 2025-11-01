@@ -464,4 +464,37 @@ console.log(message); // Output: Please login
 
 */
 
+/* 
+
+_____- PedroTech -_____ : 
+
+    - When coding in React you are always trying to minimize the lines of code you're writing. 
+        Especially when writing code directly in the UI portion of your code.
+    
+    - React somewhat allows you to directly write JS in of your HTML but its referred to as .jsx(modified version of HTML)
+
+*/
+
+let yOnE = 21;
+/* 
+
+    let nm = yOnE > 10 && "Liyema"; -> if condition is true set it to output('Liyema')
+    let nm = yOnE > 16 || "Liyema"; -> OR operator (Boolean)
+    let nm = yOnE > 20 ? "Liyema" : 'Prince'; -> if/else operator
+*/ 
+
+let nm = yOnE > 20 ? "Liyema" : 'Prince';
+console.log(nm);
+
+
+// React example :
+
+/*
+
+const nmComponent = () => {
+    return yOnE > 10 ? <div> Liyema </div> : <div> Prince </div>;
+}
+
+*/
+
 // 9. Short-Circuiting and Logical Operators
