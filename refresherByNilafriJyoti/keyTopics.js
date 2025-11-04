@@ -498,3 +498,56 @@ const nmComponent = () => {
 */
 
 // 9. Short-Circuiting and Logical Operators
+
+/* 
+
+    Logical operators like && (AND) and || (OR) can be used to create clean and concise conditional logic in JavaScript. 
+    In React, these operators often determine whether a component or JSX element should render. 
+
+*/
+
+    // 1. Logical AND (&&) - evaluates the expression on the left side first.
+    
+    /* 
+        If it's true, the right-hand expression is evaluated and returned. 
+        If the left side is false, the entire expression short-circuits, meaning the right-hand expression is ignored.
+    */
+      
+let isLoggedIn = true;
+console.log(isLoggedIn && 'Welcome back!'); // Welcome back!
+
+// This behaviour is often used in React for conditional rendering e.g. 
+
+/*
+
+function UserGreeting({ isLoggedIn }) {
+  return (
+    <div>
+    {isLoggedIn && <p>Welcome back!</p>}
+    </div>  
+  );
+}
+
+^^ Common pattern in React for rendering UI based on certain conditions without needing an explicit 'if' statement ^^
+
+*/
+
+    // 2. Logical OR(||) - Works in the opposite way. It evaluates the left-hand expression first. 
+    
+    /* 
+       If it's true (or any truthy value), it returns that value. If the left-hand expression is false (or any falsy value), 
+       it evaluates and returns the right-hand expression. 
+    */
+
+let username = '';
+console.log(username || 'Guest'); // Output: Guest
+
+// In React, this is useful for providing default values e.g.
+
+function UserProfile({ username }) {
+  return (
+    <div>
+        <p>Hello, {username || 'Guest'}!</p>
+    </div>
+  );  
+}
