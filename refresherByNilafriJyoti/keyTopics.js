@@ -544,10 +544,12 @@ console.log(username || 'Guest'); // Output: Guest
 
 // In React, this is useful for providing default values e.g.
 
-function UserProfile({ username }) {
-  return (
-    <div>
-        <p>Hello, {username || 'Guest'}!</p>
-    </div>
-  );  
-}
+/*
+    function UserProfile({ username }) {
+    return (
+        <div>
+            <p>Hello, {username || 'Guest'}!</p>
+        </div>
+    );  
+    } 
+*/
