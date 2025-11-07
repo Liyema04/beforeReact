@@ -553,3 +553,40 @@ console.log(username || 'Guest'); // Output: Guest
     );  
     } 
 */
+
+/*
+    The nullish coalescing operator (??) is similar to the logical OR operator (||),
+    but with a key difference in how they treat falsy values.
+    
+    The nullish coalescing operator (??) specifically checks if the left-hand side is either null or undefined. 
+    If the value is null or undefined, it returns the right-hand side. This allows 0, false, and '' to be treated as valid values and not overridden.
+
+*/
+
+    // 3. Combining && and || for Complex Logic
+    
+    /*
+    
+        You can also combine && and || to create more complex conditional logic or nested logic. e.g.
+    
+    */
+
+let isAdmin = false;
+let isLgdIn = true;
+console.log(isAdmin && 'Admin Panel' || isLgdIn && 'User Dasboard'); // Output: User Dasboard
+
+// This can be useful in React for deciding what to render based on multiple conditions having an interplay.
+
+/*
+
+function Dashboard({ isAdmin, isLoggedIn }) {
+  return (
+    <div>
+      {isAdmin && <p>Welcome to the Admin Panel</p>}
+      {!isAdmin && isLoggedIn && <p>Welcome to the User Dashboard</p>}
+    </div>
+  );
+}
+
+
+*/
