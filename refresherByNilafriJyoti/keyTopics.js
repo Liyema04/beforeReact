@@ -590,3 +590,101 @@ function Dashboard({ isAdmin, isLoggedIn }) {
 
 
 */
+
+// 10. Optional Chaining
+
+/*
+
+    Introduced in (ES2020) this feature allows you to safely access deeply nested 
+    properties of an object without worrying about encountering undefined or null errors.
+
+    - In traditional JavaScript, accessing nested properties of objects could result in errors if any part of the chain was undefined or null, 
+    causing your code to break.
+ 
+    ** Optional chaining provides a cleaner and safer way to handle these scenarios ** 
+    
+    - It short-circiuits and returns undefined if the value before it is null/undefined. 
+    Ultimately preventing the code from throwing an error when trying to access the properties of a null or 
+    undefined value. 
+
+*/
+
+let uSer = { name: 'Liyema', address: { city: 'Centurion', zipCode: '0'+187 } };
+console.log(uSer?.address?.city); // Output: Wonderland
+console.log(uSer?.address?.zipCode); // Output: 
+
+// Without optional chaining
+let uSer1 = { name: 'Bill' };
+console.log(uSer1?.address?.city?.zipCode); // Output: undefined
+
+
+// With optional chaining
+let uSer2 = { name: 'Caleb' };
+console.log(uSer2?.address?.city);
+
+/*
+
+    - Optional chaining can also be used in different scenarios, such as with function calls (to check if a function exists before invoking it), 
+        while accessing elements in arrays (especially when you’re unsure whether the array exists or whether it has enough elements), 
+      or while accessing dynamic properties, as shown below:
+
+*/
+
+// Optional Chaining with Functions: 
+let uSer3 = {
+    name: 'Luyolo',
+    greet: () => 'Hello!'
+};
+
+console.log(uSer3.greet?.()); // Output: Hello!
+console.log(uSer3.sayGoodbye?.()); // Output: undefined
+
+// Optional Chaining with Arrays:
+let uSers = [{ name: 'Liyema' }, { name: 'Luyolo' }];
+console.log(uSers[0]?.name);
+console.log(uSers[1]?.name);
+
+// Optional Chaining with Dynamic Properties:
+let uSer4 = { name: 'Prince' , preferences: { theme: 'dark' } };
+let property = 'preferences'
+console.log(uSer4?.[property]?.theme); // Output: dark
+
+property = 'settings';
+console.log(uSer4?.[property]?.theme) // Output: undefined
+
+/*
+
+    - When working with deeply nested objects, optional chaining can save you from having to write 
+        repetitive null checks at every level.
+
+*/
+
+let uSer5 = { profile: { address: { city: 'Centurion' } } };
+
+// Usage without optional chaining:
+if (uSer5 && uSer5.profile && uSer5.profile.address && uSer5.profile.address.city) {
+  console.log(uSer5.profile.address.city);
+}
+
+// Usage with optional chaining (saving repetitive null checks):
+console.log(uSer5?.profile?.address?.city); // Centurion
+
+/*
+
+- In React, optional chaining is particularly useful when dealing with props, API responses, or any data that may not always be available. 
+    It helps prevent errors when rendering components based on dynamic or incomplete data.
+
+- Optional chaining significantly reduces the complexity of your code, making it cleaner and more readable, 
+    especially when dealing with deeply nested structures.
+
+// Example usage of Optional Chaining in React
+function UserProfile({ uSer }) {
+  return (
+    <div>
+      <p>Name: {uSer?.name}</p>
+      <p>City: {uSer?.address?.city ?? 'Unknown'}</p>
+    </div>
+  );
+}
+
+*/
