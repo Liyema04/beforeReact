@@ -688,3 +688,31 @@ function UserProfile({ uSer }) {
 }
 
 */
+
+// 11. Asychronous JS: Callbacks, Promise, Async/Await
+
+/* 
+
+    - JavaScripst can only execute one task at a time (single-threaded language), 
+        but handling asnchronous operations is crucial, especiallt for tasks like fetching data in React.
+        Callback functions are one of the earliest patters used to handle asynchronous behavior. e.g. 
+
+*/
+
+function fetchData(callback) {
+    setTimeout(() => {
+        console.log("Data fetched"); /* Output: Data fetched */
+        callback({user: "John", age: 30}); 
+    }, 2000);
+}
+
+fetchData((data) => {
+    console.log("User:", data.user); /* Output:  User: John */
+});
+
+/*
+
+    - When multiple asynchronous tasks rely on each other, callbacks can lead to deeply nested code, 
+        commonly referred to as callback hell.
+
+*/
