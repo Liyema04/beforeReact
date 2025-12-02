@@ -310,6 +310,16 @@ function UserList() {
     It is required by React when rendering lists like this. 
 */
 
+// Pedro Tech example:
+// Quick Example of map() method
+let myNames = ["Liyema", "Luyolo", "Prince"];
+
+const newSequence = myNames.map((name) => {
+    return name + "1";
+});
+
+console.log(newSequence);
+
 
 // 2. Filter method
 //Example (basic usage):
