@@ -704,7 +704,7 @@ function UserProfile({ uSer }) {
 /* 
 
     - JavaScripst can only execute one task at a time (single-threaded language), 
-        but handling asnchronous operations is crucial, especiallt for tasks like fetching data in React.
+        but handling asnchronous operations is crucial, especially for tasks like fetching data in React.
         Callback functions are one of the earliest patters used to handle asynchronous behavior. e.g. 
 
 */
@@ -723,6 +723,113 @@ fetchData((data) => {
 /*
 
     - When multiple asynchronous tasks rely on each other, callbacks can lead to deeply nested code, 
-        commonly referred to as callback hell.
+        commonly referred to as callback hell. That's when 'promise's where introduced to solve this problem. 
+        A promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value. 
+        Instead of nesting multiple callbacks, promises allow chaining, leading to more structured and readable code.
+
+    - Similarly the , Fetch API, which is commonly used for handling network requests in React applications, 
+        returns a promise which you can handle like so:    
 
 */
+
+function fetchUserDetails(userId) {
+    return fetch(`https://api.example.com/users/${userId}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch user details');
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log("Fetched user details");
+        return { id: userId, name: data.name };
+    });
+}
+
+function fetchPostsByUser(user) {
+    return fetch(`https://api.example.com/users/${user.id}/posts`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
+      }
+      return response.json();
+    })
+    .then((posts) => {
+      console.log(`Fetched posts for ${user.name}`);
+      return posts;
+    }); 
+}
+
+// Chain Promises 
+fetchUserDetails(1)
+    .then((user) => fetchPostsByUser(user))
+    .then((posts) => console.log(posts))
+    .catch((error) => console.error("Error:", error));
+
+/*
+
+    Promises provide a more readable way to handle sequential asynchronous tasks.
+    They also simplify error handling using .catch(). 
+    But, while promises eliminate the deep nesting of callbacks, chaining too many .then() calls can still become 
+    verbose and hard to follow. 
+
+    -> Async/await , intorduced in ES2017, makes working with promises simpler. 
+        By making it behave more like synchronus code, improving readability:
+
+        - async function: An async function returns a promise. 
+            The async keyword allows the function to return a resolved promise implicitly.
+
+        - await expression: Inside an async function, await pauses the execution of the function until the promise resolves. 
+            It simplifies promise handling, as we can directly assign the resolved value to a variable.     
+ 
+*/
+
+async function getUserAndPosts(userId) {
+    try {
+        const user = await fetchUserDetails(userId); // Waits for user details
+        const posts = await fetchPostsByUser(user); // Waits for posts
+        console.log("Posts:", posts);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+getUserAndPosts(1);
+
+/*
+
+    Async/await makes asynchronous code appear synchronous, which greatly improves readability and maintainability. 
+    The try/catch block also simplifies error handling, making it consistent with 
+    how errors are caught in synchronous code.
+
+*/
+
+/* 
+
+    Error Handling in Async Code:
+    Error handling in asynchronous code can be tricky. Callbacks require error-first handling, while promises and async/await offer more
+     structured approaches, as shown below:     
+
+*/
+
+// Handling Errors with Promises: 
+/*
+fetchUserDetails(1)
+    .then((user) => fetchPostsByUser(user))
+    .then((posts) => console.log(posts))
+    .catch((error) => console.error("Error:", error));
+*/
+// Handling Errors with Async/Await:
+/*
+async function getUserAndPosts() {
+  try {
+    const user = await fetchUserDetails(1);
+    const posts = await fetchPostsByUser(user);
+    console.log(posts);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+*/
+
+// Understanding the evolution of asynchronous JavaScript helps you write efficient, non-blocking code.
