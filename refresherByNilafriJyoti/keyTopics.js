@@ -833,3 +833,38 @@ async function getUserAndPosts() {
 */
 
 // Understanding the evolution of asynchronous JavaScript helps you write efficient, non-blocking code.
+
+// 12. Closures
+
+/**
+ * A closure in JavaScript is created when a function “remembers” the variables from its outer scope, 
+ * even after the outer function has finished executing. This means that a function retains access to the environment it was created in, 
+ * making closures essential for managing data across different contexts.
+ * 
+ * .jsx 
+ * `function outerFunction(outerVar) {
+        return function innerFunction(innerVar) {
+            console.log(`Outer: ${outerVar}, Inner: ${innerVar}`);
+        };
+    }
+
+    const newFunction = outerFunction('React');
+    newFunction('JavaScript'); // Outer: React, Inner: JavaScript
+    `
+ *
+ *
+ * In React, closures are crucial for handling state and props within functional components. 
+ * They allow functions like event handlers or asynchronous callbacks to access the latest state values even after re-renders. For example, 
+ * the useState and useEffect hooks rely on closures to "remember" and manage state across renders.
+ * 
+ * .jsx 
+ * `function Counter() {
+       const [count, setCount] = useState(0);
+       const increment = () => setCount(count + 1); // Closure keeps track of count
+       return <button onClick={increment}>Count: {count}</button>;
+    }`
+ *
+ *
+ * Understanding closures ensures that you can effectively manage state and handle events in React, keeping your components consistent and predictable.   
+*/
+
